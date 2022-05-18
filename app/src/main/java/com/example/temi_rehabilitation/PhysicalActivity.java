@@ -12,6 +12,7 @@ public class PhysicalActivity extends AppCompatActivity {
 
     Button btn_stretching;
     Button btn_walking;
+    Button btn_prev;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class PhysicalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Log.d("TAG", "Intent : PHYSICAL > STRETCHING");
-                Intent intent = new Intent(getApplicationContext(), MemoryActivity.class);
+                Intent intent = new Intent(getApplicationContext(), StretchingActivity.class);
                 startActivity(intent);
             }
         });
@@ -33,7 +34,17 @@ public class PhysicalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Log.d("TAG", "Intent : PHYSICAL > WALKING");
-                Intent intent = new Intent(getApplicationContext(), MemoryActivity.class);
+                Intent intent = new Intent(getApplicationContext(), WalkingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_prev= (Button) findViewById(R.id.btn_prev);
+        btn_prev.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Log.d("TAG", "Intent : PHYSICAL > REHABILITATION");
+                Intent intent = new Intent(getApplicationContext(), RehabilitationActivity.class);
                 startActivity(intent);
             }
         });

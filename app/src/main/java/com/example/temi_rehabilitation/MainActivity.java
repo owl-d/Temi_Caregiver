@@ -11,7 +11,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button btn_rehabilitation;
-    Button btn_medicine;
+    Button btn_call;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_medicine= (Button) findViewById(R.id.btn_medicine);
-        btn_medicine.setOnClickListener(new View.OnClickListener(){
+        btn_call= (Button) findViewById(R.id.btn_call);
+        btn_call.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 

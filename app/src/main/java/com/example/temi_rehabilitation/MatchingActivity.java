@@ -2,6 +2,7 @@ package com.example.temi_rehabilitation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ public class MatchingActivity extends AppCompatActivity {
     Button btn_animal;
     Button btn_fruit;
     Button btn_figure;
+    Button btn_prev;
     private ImageView imageView;
 
     static int answer;
@@ -36,7 +38,7 @@ public class MatchingActivity extends AppCompatActivity {
                     make_problem();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "틀렸습니다!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "다시 시도해보세요!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -52,7 +54,7 @@ public class MatchingActivity extends AppCompatActivity {
                     make_problem();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "틀렸습니다!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "다시 시도해보세요!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -68,8 +70,18 @@ public class MatchingActivity extends AppCompatActivity {
                     make_problem();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "틀렸습니다!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "다시 시도해보세요!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        btn_prev= (Button) findViewById(R.id.btn_prev);
+        btn_prev.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Log.d("TAG", "Intent : MATCHING > MEMORY");
+                Intent intent = new Intent(getApplicationContext(), MemoryActivity.class);
+                startActivity(intent);
             }
         });
 

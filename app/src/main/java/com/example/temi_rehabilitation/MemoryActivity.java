@@ -13,6 +13,7 @@ public class MemoryActivity extends AppCompatActivity {
     Button btn_music;
     Button btn_matching;
     Button btn_math;
+    Button btn_prev;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,16 @@ public class MemoryActivity extends AppCompatActivity {
             public void onClick(View v){
                 Log.d("TAG", "Intent : MEMORY > MATH");
                 Intent intent = new Intent(getApplicationContext(), MathActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_prev= (Button) findViewById(R.id.btn_prev);
+        btn_prev.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Log.d("TAG", "Intent : MEMORY > REHABILITATION");
+                Intent intent = new Intent(getApplicationContext(), RehabilitationActivity.class);
                 startActivity(intent);
             }
         });

@@ -18,6 +18,7 @@ public class MathActivity extends AppCompatActivity {
     EditText et_answer;
     Button btn_submit;
     Button btn_next;
+    Button btn_prev;
 
     static int answer;
 
@@ -45,7 +46,7 @@ public class MathActivity extends AppCompatActivity {
                     make_problem();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "틀렸습니다!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "다시 시도해보세요!", Toast.LENGTH_SHORT).show();
                 }
                 et_answer.setText(null);
             }
@@ -58,6 +59,16 @@ public class MathActivity extends AppCompatActivity {
                 Log.d("TAG", "Math Game : Submit");
 
                 make_problem();
+            }
+        });
+
+        btn_prev= (Button) findViewById(R.id.btn_prev);
+        btn_prev.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Log.d("TAG", "Intent : MATH > MEMORY");
+                Intent intent = new Intent(getApplicationContext(), MemoryActivity.class);
+                startActivity(intent);
             }
         });
 
