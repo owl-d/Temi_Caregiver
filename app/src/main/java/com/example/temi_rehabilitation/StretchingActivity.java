@@ -8,14 +8,38 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class StretchingActivity extends AppCompatActivity {
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
+
+public class StretchingActivity extends YouTubeBaseActivity {
 
     Button btn_prev;
+    Button btn_play;
+    YouTubePlayerView playerView;
+    YouTubePlayer player;
+
+    private static String API_KEY = "AIzaSyC3iuaye5awCj9tly2BWIgSiAXL_rO7gRQ";
+    private static String videoId = "AJrCXjPT1Pg";
+
+    private static final String TAG = "StretchingActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stretching);
+
+        initPlayer();
+
+        btn_play= (Button) findViewById(R.id.btn_play);
+        btn_play.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Log.d(TAG, "STRETCHING : VIDEO PLAY");
+                playVideo();
+            }
+        });
 
         btn_prev= (Button) findViewById(R.id.btn_prev);
         btn_prev.setOnClickListener(new View.OnClickListener(){
@@ -25,6 +49,64 @@ public class StretchingActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PhysicalActivity.class);
                 startActivity(intent);
             }
+        });
+    }
+
+    private void playVideo() {
+        if(player != null) {
+            if(player.isPlaying()) {
+                player.pause();
+            }
+            player.cueVideo(videoId);
+        }
+    }
+
+    private void initPlayer() {
+        playerView = findViewById(R.id.youTubePlayerView);
+        playerView.initialize(API_KEY, new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                player = youTubePlayer;
+
+                player.setPlayerStateChangeListener(new YouTubePlayer.PlayerStateChangeListener() {
+                    @Override
+                    public void onLoading() {
+
+                    }
+
+                    @Override
+                    public void onLoaded(String id) {
+                        Log.d(TAG, "Stretching - onLodaded : " + id);
+                        player.play();
+                    }
+
+                    @Override
+                    public void onAdStarted() {
+
+                    }
+
+                    @Override
+                    public void onVideoStarted() {
+
+                    }
+
+                    @Override
+                    public void onVideoEnded() {
+
+                    }
+
+                    @Override
+                    public void onError(YouTubePlayer.ErrorReason errorReason) {
+                        Log.d(TAG, "Stretching - onError : " + errorReason);
+                    }
+                });
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+
         });
     }
 }
